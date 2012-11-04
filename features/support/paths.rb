@@ -17,6 +17,7 @@ module NavigationHelpers
     when /^the movies page$/ then '/movies'
     when /^the home\s?page$/ then '/movies'
     when /^the (.+) page ([0-9]+)$/ then "/movies/#{$2}/#{$1}"
+    when /^the ([0-9]+) page$/ then "/movies/#{$1}"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
