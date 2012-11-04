@@ -9,6 +9,14 @@ When /^(?:|I )go to (.+) for "(.+)"$/ do |page_name,mov|
   visit path_to( page_name + " #{mov.id}" )
 end
 
+Then /^the director of "([^"]+)" should be "([^"]+)"$/ do |mov,dir|
+  moviee = Movie.find_by_title( mov )
+  steps %Q{
+    Then I should be on the #{moviee.id} page
+    Then I should see "#{dir}"
+  }
+end
+
 Then /I should (not )?see following movies: (.*)$/ do |negative, array|
   array.split(/, */).each do |mov|
     steps %Q{ Then I should #{negative}see "#{mov}" }
