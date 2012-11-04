@@ -9,6 +9,11 @@ When /^(?:|I )go to (.+) for "(.+)"$/ do |page_name,mov|
   visit path_to( page_name + " #{mov.id}" )
 end
 
+Given /^I am on the details page for "(.+)"$/ do |mov|
+  mov = Movie.find_by_title( mov )
+  steps %Q{ Then I am on the #{mov.id} page }
+end
+
 Then /^the director of "([^"]+)" should be "([^"]+)"$/ do |mov,dir|
   moviee = Movie.find_by_title( mov )
   steps %Q{
