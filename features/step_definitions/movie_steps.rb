@@ -4,6 +4,11 @@ Given /the following movies exist/ do |movies_table|
   end
 end
 
+When /^(?:|I )go to (.+) for "(.+)"$/ do |page_name,mov|
+  mov = Movie.find_by_title( mov )
+  visit path_to( page_name + " #{mov.id}" )
+end
+
 Then /I should (not )?see following movies: (.*)$/ do |negative, array|
   array.split(/, */).each do |mov|
     steps %Q{ Then I should #{negative}see "#{mov}" }
