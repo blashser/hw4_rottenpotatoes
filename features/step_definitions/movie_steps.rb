@@ -22,6 +22,13 @@ Then /^the director of "([^"]+)" should be "([^"]+)"$/ do |mov,dir|
   }
 end
 
+Then /^I should be on the Similar Movies page for "(.*)"$/ do |mov|
+  moviee = Movie.find_by_title( mov )
+  steps %Q{
+    Then I should be on the similarmovies page #{moviee.id}
+  }
+end
+
 Then /I should (not )?see following movies: (.*)$/ do |negative, array|
   array.split(/, */).each do |mov|
     steps %Q{ Then I should #{negative}see "#{mov}" }
