@@ -4,9 +4,7 @@ describe Movie do
   describe 'Get all ratings' do
     it 'should get all available rating' do
       answer = %w( G PG PG-13 NC-17 R )
-      Movie.should_receive( :all_ratings ).and_return( answer )
-      ratings = Movie.all_ratings
-      ratings.should == answer
+      Movie.all_ratings.should == answer
     end
   end
 end
